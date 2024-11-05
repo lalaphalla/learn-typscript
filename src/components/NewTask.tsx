@@ -13,14 +13,6 @@ export const NewTask = ({ setTasks }: NewTaskProps) => {
   const description = useRef<HTMLInputElement>(null);
 
   const addTask = (newTask: Task) => {
-    // console.log(newTask);
-    // const existingTask: Task[] = JSON.parse(
-    //   localStorage.getItem('tasks') || '[]'
-    // );
-    // tasks.push(newTask);
-
-    // localStorage.setItem('tasks', JSON.stringify(existingTask));
-
     setTasks((prevTasks) => {
       const updatedTask = [...prevTasks, newTask];
       localStorage.setItem('tasks', JSON.stringify(updatedTask));
