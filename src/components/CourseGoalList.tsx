@@ -6,6 +6,7 @@ type CourseGoalListProps = {
   onDeleteGoal: (id: number) => void;
 };
 
+
 export default function CourseGoalList({
   goals,
   onDeleteGoal,
