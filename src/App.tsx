@@ -8,6 +8,7 @@ import { NewTask } from './components/NewTask.tsx';
 import { TaskList } from './components/TaskList.tsx';
 import { TaskManager } from './services/TaskManager.ts';
 import { Task as TaskModel } from './models/Task.ts'
+import { Human, SadState } from './models/Human.ts';
 
 export type CourseGoal = {
   title: string;
@@ -29,6 +30,10 @@ export default function App() {
   const handleAddTask = (title: string, description: string) => {
     taskManager.addTask(title, description)
     setTasks(taskManager.loadTasks())
+
+    h1.changeState(new SadState);
+
+  console.log(h1.think())
     // console.log(taskManager.addTask(title, description))
   };
   const handleDeleteTask = (id:number) => {
@@ -42,6 +47,9 @@ export default function App() {
   //     return updatedTask;
   //   });
   // };
+
+  const h1 = new Human()
+  console.log(h1.think())
   return (
     <main>
       <Header image={{ src: goalImg, alt: 'A list of golas' }}>
@@ -49,7 +57,7 @@ export default function App() {
       </Header>
       <NewTask onAddTask={handleAddTask} />
       {/* <NewTask setTasks={setTasks} /> */}
-
+      <form><button onClick={()=> taskManager.deleteAllTask()}>Delete all</button></form>
       <TaskList tasks={tasks} onDeleteTask={handleDeleteTask} />
     </main>
   );

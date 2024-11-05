@@ -24,7 +24,11 @@ export class TaskManager {
   loadTasks(): Task[]{
     return  this.tasks.map((task: Task) => new Task(task.id, task.title, task.description))
   }
+  deleteAllTask(){
+    localStorage.setItem('tasks',JSON.stringify([]));  
+  }
   saveTasks(){
     localStorage.setItem('tasks',JSON.stringify(this.tasks));
   }
+
 }
