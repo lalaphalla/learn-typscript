@@ -33,7 +33,7 @@ export default function App() {
 
     h1.changeState(new SadState);
 
-  console.log(h1.think())
+  console.log(h1.think(), h1.action() )
     // console.log(taskManager.addTask(title, description))
   };
   const handleDeleteTask = (id:number) => {
