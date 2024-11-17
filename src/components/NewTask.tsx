@@ -7,11 +7,17 @@ export type Task = {
 
 interface NewTaskProps {
   // setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
+  taskProp: Task | null;
   onAddTask: (title: string, description: string) => void;
 }
-export const NewTask = ({ onAddTask }: NewTaskProps) => {
+export const NewTask = ({ taskProp, onAddTask }: NewTaskProps) => {
   const task = useRef<HTMLInputElement>(null);
   const description = useRef<HTMLInputElement>(null);
+
+  if (taskProp){
+    task.current!.value = taskProp.title
+    description.current!.value = taskProp.description
+  }
 
   // const addTask = (newTask: Task) => {
   //   setTasks((prevTasks) => {
@@ -32,6 +38,11 @@ export const NewTask = ({ onAddTask }: NewTaskProps) => {
     // };
     onAddTask(inputTask, inputDescription);
   };
+  const handleReset = ()=>{
+    task.current!.value = ''
+    description.current!.value = ''
+    taskProp = null;
+  }
 
   return (
     <form onSubmit={handleSubmit}>
@@ -44,6 +55,7 @@ export const NewTask = ({ onAddTask }: NewTaskProps) => {
         <input type="text" id="description" ref={description} />
       </p>
       <button>Add Task</button>
+      <button onClick={handleReset}>Reset</button>
     </form>
   );
 };
