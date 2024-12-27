@@ -10,6 +10,9 @@ import { TaskManager } from './services/TaskManager.ts';
 import { Task as TaskModel } from './models/Task.ts';
 import { Human, SadState } from './models/Human.ts';
 import { LocalStorage, SupabaseStorage } from './services/Storage.ts';
+import UserCard from './components/UserCard.tsx';
+import UserCardComponent from './components/UserCardComponent.tsx';
+import DogImagesContainter from './components/DogImagesContainer.tsx';
 
 export type CourseGoal = {
   title: string;
@@ -37,7 +40,7 @@ export default function App() {
   useEffect(() => {
     // setTasks(taskManager.loadTasks())
     // setTasks(JSON.parse(localStorage.getItem('tasks') || '[]'));
-    loadTasks();
+    // loadTasks();
   }, []);
 
   const handleAddTask = (title: string, description: string) => {
@@ -62,7 +65,7 @@ export default function App() {
     console.log(updateTask);
     // await taskManager.updateTask(task.id, task.title, task.description);
 
-    // loadTasks()
+    loadTasks()
     // setTasks(taskManager.deleteTask(id))
   };
 
@@ -73,15 +76,19 @@ export default function App() {
     //   return updatedTask;
     // });
   };
+  const handleMessageClick = () => {
+    console.log('Message clicked');
+  };
 
   const h1 = new Human();
+  const sok = { name: 'sok', email: 'sok@gmail.com' };
   console.log(h1.think());
   return (
     <main>
       <Header image={{ src: goalImg, alt: 'A list of golas' }}>
         <h1>Task List</h1>
       </Header>
-      <NewTask taskProp={isEdit? task: null} onAddTask={handleAddTask} />
+      {/* <NewTask taskProp={isEdit ? task : null} onAddTask={handleAddTask} /> */}
       {/* <NewTask setTasks={setTasks} /> */}
       <form>
         <button onClick={() => taskManager.deleteAllTask()}>Delete all</button>
@@ -91,6 +98,9 @@ export default function App() {
         onDeleteTask={handleDeleteTask}
         onUpdateTask={handleUpdateTask}
       />
+      <UserCard user={sok} onMessageClick={handleMessageClick} />
+      <UserCardComponent />
+      <DogImagesContainter />
     </main>
   );
 }
