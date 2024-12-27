@@ -13,6 +13,7 @@ import { LocalStorage, SupabaseStorage } from './services/Storage.ts';
 import UserCard from './components/UserCard.tsx';
 import UserCardComponent from './components/UserCardComponent.tsx';
 import DogImagesContainter from './components/DogImagesContainer.tsx';
+import TaskListComponent from './components/TaskListComponent.tsx';
 
 export type CourseGoal = {
   title: string;
@@ -93,11 +94,13 @@ export default function App() {
       <form>
         <button onClick={() => taskManager.deleteAllTask()}>Delete all</button>
       </form>
-      <TaskList
+      {/* <TaskList
         tasks={tasks}
         onDeleteTask={handleDeleteTask}
         onUpdateTask={handleUpdateTask}
       />
+       */}
+       <TaskListComponent />
       <UserCard user={sok} onMessageClick={handleMessageClick} />
       <UserCardComponent />
       <DogImagesContainter />
